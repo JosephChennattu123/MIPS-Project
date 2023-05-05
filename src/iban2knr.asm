@@ -7,20 +7,21 @@
 # a1: BLZ buffer (8 bytes)
 # a2: KNR buffer (10 bytes)
 iban2knr:
+add $t0 $zero $a0
 add $t1,$zero,$a1
 add $t2,$zero,$a2
 li $t3 0
 	blz:
-	lb $t4,4($a0)
-	addi $a0,$a0,1
+	lb $t4,4($t0)
+	addi $t0,$t0,1
 	sb $t4,($t1)
 	addi $t1,$t1,1	
 	addi $t3,$t3,1
 	bne $t3,8,blz
 	
 	knr:
-	lb $t4,4($a0)	
-	addi $a0,$a0,1
+	lb $t4,4($t0)	
+	addi $t0,$t0,1
 	sb $t4,($t2)
 	addi $t2,$t2,1
 	addi $t3,$t3,1

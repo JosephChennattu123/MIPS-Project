@@ -13,10 +13,9 @@ modulo_str:
 	add $t0 $a0 $0
 	add $t1 $a1 $0
 	add $t2 $a2 $0
-	add $t5 $0 $0
-	li $t6 0
+	add $t5 $zero $zero
  	icried:
- 	beq  $t1 $t6 end
+ 	beqz  $t1 end
  	lb $t3,($t0)
  	addi $t0 $t0 1
  	subi $t1 $t1 1
@@ -26,11 +25,12 @@ modulo_str:
  	div $t5,$t2
  	mfhi $t5
  	b icried
- 		
- 		
+ 	#div $t5,$t2	
+ 	#mfhi $v0	
  			
 	
 	# TODO
 	end:
-	move $v0,$t5
+	div $t5,$t2	
+ 	mfhi $v0
 	jr	$ra
