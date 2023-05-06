@@ -60,4 +60,5 @@ validate_checksum:
     move $t4 $ra
     jal modulo_str
     move $ra $t4
+    addi $v0 $v0 0
     jr $ra                 # return to caller
