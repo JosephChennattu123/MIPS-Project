@@ -6,6 +6,11 @@
 # a0: IBAN buffer (22 bytes)
 # a1: BLZ buffer (8 bytes)
 # a2: KNR buffer (10 bytes)
+addi $sp $sp -12
+sw $s0 ($sp)
+sw $s1 4($sp)
+sw $s2 8($sp)
+
 knr2iban:
     add $t0 $a0 $zero
     add $t1 $a1 $zero
@@ -58,5 +63,13 @@ knr2iban:
     sb $t7 2($a0)
     sb $t8 3($a0)         
     
-	# TODO
+	
+    lw $s2 ($sp)
+    addi $sp $sp 4
+    lw $s1 ($sp)
+    addi $sp $sp 4
+    lw $s2 ($sp)
+    addi $sp $sp 4
+
+    # TODO
 	jr	$ra
